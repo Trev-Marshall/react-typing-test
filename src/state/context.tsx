@@ -56,14 +56,12 @@ export const useTyping = () => {
     dispatch({ type: ActionTypes.SET_TIMER });
   };
 
-  // const onReset = () => {
-  //   state.timerId = 0;
-  //   dispatch({ type: ActionTypes.CHANGE_INPUT, payload: '' });
-  // };
-
     const onReset = () => {
-    state.timerId = 0;
-    dispatch({ type: ActionTypes.SET_TIMER});
+    state.seconds = 0;
+    state.input = '';
+    state.characters = 0;
+    clearInterval(state.timerId);
+    dispatch({ type: ActionTypes.SET_TIMER, payload: ''});
   };
 
   // return [state, dispatch];

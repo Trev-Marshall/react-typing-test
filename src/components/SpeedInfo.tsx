@@ -12,7 +12,7 @@ export const SpeedInfo = () => {
     Typing Speed
     <div>Elapsed Time: {seconds}s</div>
     <div>WPM: {wpm(words(characters), minutes(seconds))}</div>
-    <div>Correct Characters: {characters}/{text.length - 1}</div>
+    <div>Correct Characters: {characters}/{text.length - 2}</div>
     </>
   )
 }
