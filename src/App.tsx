@@ -3,6 +3,7 @@ import { Preview } from './components/Preview';
 import { UserInput } from './components/UserInput';
 import { SpeedInfo } from './components/SpeedInfo';
 import { ResetBtn } from './components/ResetBtn';
+import { TestBtn } from './components/TestBtn';
 
 import { TypingProvider } from './state/context';
 
@@ -17,6 +18,7 @@ function App() {
           <SpeedInfo />
         </div>
         <ResetBtn />
+        <TestBtn />
       </TypingProvider>
     </div>
   );

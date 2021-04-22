@@ -42,14 +42,15 @@ export const useTyping = () => {
           id: doc.id,
           quote: doc.data(),
         }))
-        console.log(tempQuotes);
+        quotes();
         state.excerpts = [tempQuotes];
         state.quoteBool = true;
+        console.log(state.excerpts, state.quoteBool);
       })
     } else if(state.quoteBool === true) {
       return; // change this later to change the state of text.
-    }
-  }
+    };
+  };
 
   const onInput = (value: string) => {
     // When the timer id is undefined timer is started
@@ -87,5 +88,5 @@ export const useTyping = () => {
   };
 
   // return [state, dispatch];
-  return { state, onInput, onReset };
+  return { state, onInput, onReset, updateQuote };
 };
