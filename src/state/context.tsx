@@ -32,9 +32,9 @@ export const TypingProvider: FunctionComponent = ({children}) => {
 export const useTyping = () => {
   const [state, dispatch] = useContext(typingContext);
 
-  // Get data from database if not there
+  // Pick quote from state
 
-  // Update quote
+  // Grab data from database if needed and switches to new quote
   const updateQuote = () => {
     if (state.quoteBool === false) {
       const quotes = db.collection('excerpts').onSnapshot((snapshot) => {
@@ -46,10 +46,17 @@ export const useTyping = () => {
         state.excerpts = [tempQuotes];
         state.quoteBool = true;
         console.log(state.excerpts, state.quoteBool);
-      })
-    } else if(state.quoteBool === true) {
-      return; // change this later to change the state of text.
+      });
     };
+    // let size = Object.keys(state.excerpts[0][0].quote).length;
+    // console.log(size);
+    let i = Math.floor(Math.random() * 5 + 1);
+    console.log(i);
+    state.text = state.excerpts[0][0].quote[`quote ${i}`];
+    console.log(state.text);
+
+    dispatch({ type: ActionTypes.UPDATE_QUOTES, payload: updateQuote});
+
   };
 
   const onInput = (value: string) => {

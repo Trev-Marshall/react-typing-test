@@ -2,7 +2,7 @@ import { countCorrectCharacters } from "./util";
 
 // Creating interface for the initial state and stating the types
 export interface State {
-  excerpts: {}[];
+  excerpts: any;
   text: string;
   input: string;
   characters: number;
@@ -12,7 +12,7 @@ export interface State {
 }
 // creating the initial state values. The type is "State" as stated in the variable header
 export const initialState: State = {
-  excerpts: [],
+  excerpts: '',
   text: '',
   input: '',
   characters: 0,
