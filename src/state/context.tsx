@@ -6,9 +6,11 @@ import {
   Dispatch
 } from 'react';
 
+import { db } from '../firebase/firebase';
+
 import { initialState, reducer, Action, ActionTypes, State } from './state'
 
-// This is where the data is from what I can tell
+// This is where the data gets pushed to a context
 export const typingContext = createContext<[State, Dispatch<Action<any>>]>([
   initialState, 
   () => {},
@@ -29,6 +31,25 @@ export const TypingProvider: FunctionComponent = ({children}) => {
 // Using the typingContext state
 export const useTyping = () => {
   const [state, dispatch] = useContext(typingContext);
+
+  // Get data from database if not there
+
+  // Update quote
+  const updateQuote = () => {
+    if (state.quoteBool === false) {
+      const quotes = db.collection('excerpts').onSnapshot((snapshot) => {
+        const tempQuotes = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          quote: doc.data(),
+        }))
+        console.log(tempQuotes);
+        state.excerpts = [tempQuotes];
+        state.quoteBool = true;
+      })
+    } else if(state.quoteBool === true) {
+      return; // change this later to change the state of text.
+    }
+  }
 
   const onInput = (value: string) => {
     // When the timer id is undefined timer is started
@@ -60,6 +81,7 @@ export const useTyping = () => {
     state.seconds = 0;
     state.input = '';
     state.characters = 0;
+    state.excerpts = [];
     clearInterval(state.timerId);
     dispatch({ type: ActionTypes.SET_TIMER, payload: ''});
   };
