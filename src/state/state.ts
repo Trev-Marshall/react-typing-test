@@ -12,7 +12,7 @@ export interface State {
 }
 // creating the initial state values. The type is "State" as stated in the variable header
 export const initialState: State = {
-  excerpts: '',
+  excerpts: [],
   text: '',
   input: '',
   characters: 0,
@@ -41,9 +41,11 @@ type Reducer<T = any> = (state: State, payload?: T) => State;
 // Transducer in redux terms is root reducer. In functional programming it is a map to say which reducer is going to be used
 
 // Declaring variable that updates the excerpts
-export const changeQuotes: Reducer<string[]> = (state, excerpts = []) => ({
+export const changeQuotes: Reducer<string[]> = (state) => ({
   ...state,
-  excerpts,
+  excerpts: state.excerpts,
+  quoteBool: state.quoteBool,
+  text: state.text,
 })
 
 // Declaring variable that updates the input

@@ -32,7 +32,6 @@ export const TypingProvider: FunctionComponent = ({children}) => {
 export const useTyping = () => {
   const [state, dispatch] = useContext(typingContext);
 
-  // Pick quote from state
 
   // Grab data from database if needed and switches to new quote
   const updateQuote = () => {
@@ -44,19 +43,23 @@ export const useTyping = () => {
         }))
         quotes();
         state.excerpts = [tempQuotes];
+        console.log(state.quoteBool);
         state.quoteBool = true;
         console.log(state.excerpts, state.quoteBool);
+        dispatch({ type: ActionTypes.UPDATE_QUOTES});
       });
+      return state.excerpts;
     };
-    // let size = Object.keys(state.excerpts[0][0].quote).length;
-    // console.log(size);
-    let i = Math.floor(Math.random() * 5 + 1);
-    console.log(i);
-    state.text = state.excerpts[0][0].quote[`quote ${i}`];
-    console.log(state.text);
-
-    dispatch({ type: ActionTypes.UPDATE_QUOTES, payload: updateQuote});
-
+    const size: number = Object.keys(state.excerpts[0][0].quote).length;
+      const pickQuote = (size: number) => {
+        console.log(size);
+      let i = Math.floor(Math.random() * size + 1);
+      console.log(i);
+      state.text = state.excerpts[0][0].quote[`quote ${i}`];
+      console.log(state.text);
+      };
+      pickQuote(size);
+      dispatch({ type: ActionTypes.UPDATE_QUOTES});
   };
 
   const onInput = (value: string) => {

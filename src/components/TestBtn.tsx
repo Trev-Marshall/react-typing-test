@@ -8,7 +8,7 @@ export const TestBtn = () => {
   } = useTyping();
   return (
     <>
-    <button onClick={updateQuote}>Log data</button>
+    <button onClick={updateQuote}>Switch quote</button>
     </>
   )
 }
