@@ -50,11 +50,11 @@ export const useTyping = () => {
       });
       return state.excerpts;
     };
+    // Finds the length of the excerpt array
     const size: number = Object.keys(state.excerpts[0][0].quote).length;
+    // Picks and updates text state
       const pickQuote = (size: number) => {
-        console.log(size);
       let i = Math.floor(Math.random() * size + 1);
-      console.log(i);
       state.text = state.excerpts[0][0].quote[`quote ${i}`];
       console.log(state.text);
       };
