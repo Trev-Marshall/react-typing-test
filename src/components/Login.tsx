@@ -12,17 +12,25 @@ function Login({setUser}: any) {
         photo: user?.photoURL
       };
       localStorage.setItem('user', JSON.stringify(newUser));
-      setUser(newUser);
+      setUser(newUser);  // <-- This is where the state updates
       console.log(user);
     }).catch((error) => {
       alert(error.message);
     });
-  }
+  };
+
+  const signOut = () => {
+    auth.signOut().then(() => {
+      localStorage.removeItem('user');
+      setUser(null);
+    })
+  };
 
   return (
     <div>
       This is the login page
       <button onClick={signIn}>click here to sign in</button>
+      <button onClick={signOut}>Sign Out</button>
     </div>
   )
 }

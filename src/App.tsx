@@ -13,9 +13,10 @@ import Login from './components/Login';
 
 // Context
 import { TypingProvider } from './state/context';
+import ProfileLink from './components/ProfileLink';
 
 function App() {
-  const [user, setUser] = useState([]);
+  const [user, setUser]: any = useState(JSON.parse(localStorage.getItem('user')!));
 
   return (
     <Router>
@@ -25,7 +26,7 @@ function App() {
             <li><Link to="/"><h1>Melange</h1></Link></li>
           </ul>
           <ul>
-            <li><Link to="/user">Profile</Link></li>
+            <li><Link to="/user"><ProfileLink user={user} /></Link></li>
             <li><Link to="/login">Login/Sign-up</Link></li>
           </ul>
         </nav>
@@ -47,7 +48,7 @@ function App() {
       </Route>
 
       <Route path="/user">
-        <User />
+        <User user={user}/>
       </Route>
 
       <Route path="/login">
