@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {useState} from 'react';
 
 // Components
 import { Preview } from './components/Preview';
@@ -8,20 +9,24 @@ import { SpeedInfo } from './components/SpeedInfo';
 import { ResetBtn } from './components/ResetBtn';
 import { TestBtn } from './components/TestBtn';
 import User from './components/User';
+import Login from './components/Login';
 
 // Context
 import { TypingProvider } from './state/context';
 
 function App() {
+  const [user, setUser] = useState([]);
+
   return (
     <Router>
       <div>
         <nav>
           <ul>
-            <Link to="/"><h1>Melange</h1></Link>
+            <li><Link to="/"><h1>Melange</h1></Link></li>
           </ul>
           <ul>
-            <Link to="/user">Profile</Link>
+            <li><Link to="/user">Profile</Link></li>
+            <li><Link to="/login">Login/Sign-up</Link></li>
           </ul>
         </nav>
       </div>
@@ -43,6 +48,10 @@ function App() {
 
       <Route path="/user">
         <User />
+      </Route>
+
+      <Route path="/login">
+        <Login setUser={setUser}/>
       </Route>
 
       </Switch>

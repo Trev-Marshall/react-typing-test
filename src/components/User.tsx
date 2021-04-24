@@ -6,7 +6,7 @@ function User(props: any) {
       <div>
       Username
       <img />
-      Profile pic goes here
+      || Profile pic goes here
       </div>
       <div>
       This is where the user's stats will be
