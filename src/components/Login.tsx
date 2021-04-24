@@ -1,7 +1,14 @@
 import React from 'react'
-import { auth, provider } from '../firebase/firebase';
+
+import { auth, db, provider } from '../firebase/firebase';
 
 function Login({setUser}: any) {
+
+  const initUserObj = (user: any) => {
+    db.collection('users').doc(user.uid).set({
+      wpm: null,
+    })
+  }
 
   const signIn = () => {
     auth.signInWithPopup(provider).then((result) => {
@@ -14,6 +21,7 @@ function Login({setUser}: any) {
       localStorage.setItem('user', JSON.stringify(newUser));
       setUser(newUser);  // <-- This is where the state updates
       console.log(user);
+      initUserObj(user);
     }).catch((error) => {
       alert(error.message);
     });

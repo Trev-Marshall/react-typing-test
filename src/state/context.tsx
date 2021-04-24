@@ -10,6 +10,8 @@ import { db } from '../firebase/firebase';
 
 import { initialState, reducer, Action, ActionTypes, State } from './state'
 
+import {wpm, words, minutes} from '../state/util';
+
 // This is where the data gets pushed to a context
 export const typingContext = createContext<[State, Dispatch<Action<any>>]>([
   initialState, 
@@ -43,9 +45,19 @@ export const useTyping = () => {
         }))
         quotes();
         state.excerpts = [tempQuotes];
-        console.log(state.quoteBool);
         state.quoteBool = true;
-        console.log(state.excerpts, state.quoteBool);
+        console.log(state.excerpts[0][0]);
+
+        // Finds the length of the excerpt array
+        const size: number = Object.keys(state.excerpts[0][0].quote).length;
+        // Picks and updates text state
+        const pickQuote = (size: number) => {
+        let i = Math.floor(Math.random() * size + 1);
+        state.text = state.excerpts[0][0].quote[`quote ${i}`];
+        console.log(state.text);
+        };
+        pickQuote(size);
+
         dispatch({ type: ActionTypes.UPDATE_QUOTES});
       });
       return state.excerpts;
@@ -53,13 +65,13 @@ export const useTyping = () => {
     // Finds the length of the excerpt array
     const size: number = Object.keys(state.excerpts[0][0].quote).length;
     // Picks and updates text state
-      const pickQuote = (size: number) => {
-      let i = Math.floor(Math.random() * size + 1);
-      state.text = state.excerpts[0][0].quote[`quote ${i}`];
-      console.log(state.text);
-      };
-      pickQuote(size);
-      dispatch({ type: ActionTypes.UPDATE_QUOTES});
+    const pickQuote = (size: number) => {
+    let i = Math.floor(Math.random() * size + 1);
+    state.text = state.excerpts[0][0].quote[`quote ${i}`];
+    console.log(state.text);
+    };
+    pickQuote(size);
+    dispatch({ type: ActionTypes.UPDATE_QUOTES});
   };
 
   const onInput = (value: string) => {
