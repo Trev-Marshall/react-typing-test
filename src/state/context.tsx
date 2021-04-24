@@ -88,6 +88,7 @@ export const useTyping = () => {
     dispatch({ type: ActionTypes.SET_TIMER });
   };
 
+  // Reset button that resets values of type test
     const onReset = () => {
     state.seconds = 0;
     state.input = '';
