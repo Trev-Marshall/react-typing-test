@@ -17,6 +17,7 @@ import ProfileLink from './components/ProfileLink';
 
 function App() {
   const [user, setUser]: any = useState(JSON.parse(localStorage.getItem('user')!));
+  const [highScr, setScore]: any = useState(null);
 
   return (
     <Router>
@@ -39,7 +40,7 @@ function App() {
             <Preview />
             <UserInput />
             <div className='typing-speed'>
-              <SpeedInfo />
+              <SpeedInfo user={user} highScr={highScr}/>
             </div>
             <ResetBtn />
             <TestBtn />
@@ -48,11 +49,11 @@ function App() {
       </Route>
 
       <Route path="/user">
-        <User user={user}/>
+        <User user={user} highScr={highScr}/>
       </Route>
 
       <Route path="/login">
-        <Login setUser={setUser}/>
+        <Login setUser={setUser} setScore={setScore}/>
       </Route>
 
       </Switch>

@@ -2,26 +2,36 @@ import React from 'react'
 
 import { auth, db, provider } from '../firebase/firebase';
 
-function Login({setUser}: any) {
+function Login({setUser, setScore }: any) {
 
   const initUserObj = (user: any) => {
-    db.collection('users').doc(user.uid).set({
-      wpm: null,
+    console.log(db.collection("users").doc(user?.uid))
+    const wpmRef = db.collection("users").doc(user?.uid);
+    wpmRef.get().then((doc) => {
+      if(!doc.exists){
+        db.collection('users').doc(user.uid).set({
+          wpmBest: null,
+        });
+      } else {
+        setScore(doc.data());
+      }
     })
   }
 
   const signIn = () => {
     auth.signInWithPopup(provider).then((result) => {
       let user = result.user;
+      console.log(user);
+      initUserObj(user);
       let newUser = {
         name: user?.displayName,
         email: user?.email,
-        photo: user?.photoURL
+        photo: user?.photoURL,
+        uid: user?.uid
       };
       localStorage.setItem('user', JSON.stringify(newUser));
       setUser(newUser);  // <-- This is where the state updates
       console.log(user);
-      initUserObj(user);
     }).catch((error) => {
       alert(error.message);
     });

@@ -10,8 +10,6 @@ import { db } from '../firebase/firebase';
 
 import { initialState, reducer, Action, ActionTypes, State } from './state'
 
-import {wpm, words, minutes} from '../state/util';
-
 // This is where the data gets pushed to a context
 export const typingContext = createContext<[State, Dispatch<Action<any>>]>([
   initialState, 
@@ -62,6 +60,7 @@ export const useTyping = () => {
       });
       return state.excerpts;
     };
+
     // Finds the length of the excerpt array
     const size: number = Object.keys(state.excerpts[0][0].quote).length;
     // Picks and updates text state

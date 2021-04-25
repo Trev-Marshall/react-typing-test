@@ -10,7 +10,9 @@ export const UserInput: FunctionComponent = () => {
   return (
     <textarea 
       value={input}
-      onChange={(e) => onInput(e.target.value)
+      onChange={(e) => {
+        onInput(e.target.value)
+      }
       }
     />
   )};
