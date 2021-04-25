@@ -5,7 +5,6 @@ import { auth, db, provider } from '../firebase/firebase';
 function Login({setUser, setScore }: any) {
 
   const initUserObj = (user: any) => {
-    console.log(db.collection("users").doc(user?.uid))
     const wpmRef = db.collection("users").doc(user?.uid);
     wpmRef.get().then((doc) => {
       if(!doc.exists){
@@ -21,7 +20,6 @@ function Login({setUser, setScore }: any) {
   const signIn = () => {
     auth.signInWithPopup(provider).then((result) => {
       let user = result.user;
-      console.log(user);
       initUserObj(user);
       let newUser = {
         name: user?.displayName,
@@ -31,7 +29,6 @@ function Login({setUser, setScore }: any) {
       };
       localStorage.setItem('user', JSON.stringify(newUser));
       setUser(newUser);  // <-- This is where the state updates
-      console.log(user);
     }).catch((error) => {
       alert(error.message);
     });
@@ -41,6 +38,7 @@ function Login({setUser, setScore }: any) {
     auth.signOut().then(() => {
       localStorage.removeItem('user');
       setUser(null);
+      setScore(null)
     })
   };
 

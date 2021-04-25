@@ -104,7 +104,6 @@ export const useTyping = () => {
     state.seconds = 0;
     state.input = '';
     state.characters = 0;
-    state.excerpts = [];
     clearInterval(state.timerId);
     dispatch({ type: ActionTypes.SET_TIMER, payload: ''});
   };
