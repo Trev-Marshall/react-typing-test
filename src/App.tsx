@@ -14,6 +14,7 @@ import Login from './components/Login';
 // Context
 import { TypingProvider } from './state/context';
 import ProfileLink from './components/ProfileLink';
+import { Person } from '@material-ui/icons';
 
 function App() {
   const [user, setUser]: any = useState(JSON.parse(localStorage.getItem('user')!));
@@ -22,13 +23,13 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li><Link to="/"><h1>Melange</h1></Link></li>
+        <nav className="navContainer">
+          <ul className="ul">
+            <li><Link className="link" to="/"><h1 className="heading">Melange</h1></Link></li>
           </ul>
-          <ul>
-            <li><Link to="/user"><ProfileLink user={user} /></Link></li>
-            <li><Link to="/login">Login/Sign-up</Link></li>
+          <ul className="ul">
+            <li><Link className="link" to="/user"><ProfileLink user={user} /><Person /></Link></li>
+            <li><Link className="link" to="/login">Login/Sign-up</Link></li>
           </ul>
         </nav>
       </div>

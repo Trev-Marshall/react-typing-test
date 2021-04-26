@@ -1,32 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
 :root {
-    --black: #282a36;
-    --green: #80cbc4;
-    --red: #ef9a9a;
+	--tangerine: #ecebc4;
+	--green: #12d6c3;
+	--red: #ef9a9a;
 }
 
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	background-color: var(--tangerine);
+	font-family: 'Comfortaa', cursive;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
 }
 .green {
-    color: var(--green);
+	color: var(--green);
 }
 .red {
-    color: var(--red);
+	color: var(--red);
 }
 .container {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    text-align: center;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+	text-align: center;
+}
+
+.heading {
+	font-family: 'Comfortaa', cursive;
+}
+.navContainer {
+	display: flex;
+	justify-content: space-between;
+}
+.link {
+	text-decoration: none;
+	color: rgb(158, 42, 0);
+}
+.ul {
+	list-style-type: none;
 }

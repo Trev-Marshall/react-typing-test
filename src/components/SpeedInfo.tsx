@@ -22,7 +22,6 @@ export const SpeedInfo = (props: any) => {
 
   return (
     <>
-    Typing Speed
     <div>Elapsed Time: {seconds}s</div>
     <div>WPM: {wordsPerMinute}</div>
     <div>Correct Characters: {characters}/{text.length - 2}</div>
