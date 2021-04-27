@@ -43,10 +43,9 @@ function Login({setUser, setScore }: any) {
   };
 
   return (
-    <div>
-      This is the login page
-      <button onClick={signIn}>click here to sign in</button>
-      <button onClick={signOut}>Sign Out</button>
+    <div className="loginDiv">
+      <button onClick={signIn} className="loginBtn">Sign In</button>
+      <button onClick={signOut} className="loginBtn">Sign Out</button>
     </div>
   )
 }

@@ -18,7 +18,7 @@ function User(props: any) {
       <HighScore highScr={props.highScr}/>
     </div>
   );} else {
-    return (<h1>You need to sign in first</h1>)
+    return (<h2>Once you are signed in your stats will be shown here.</h2>)
   }
 }
 
