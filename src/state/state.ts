@@ -8,6 +8,7 @@ export interface State {
   characters: number;
   seconds: number;
   timerId?: number;
+  disabledTxtArea: boolean | undefined,
   quoteBool: boolean;
 }
 // creating the initial state values. The type is "State" as stated in the variable header
@@ -18,6 +19,7 @@ export const initialState: State = {
   characters: 0,
   seconds: 0,
   timerId: undefined,
+  disabledTxtArea: undefined,
   quoteBool: false,
 }
 
@@ -27,6 +29,7 @@ export enum ActionTypes {
   SET_TIMER,
   TICK,
   UPDATE_QUOTES,
+  UPDATE_TXTAREA,
 }
 
 // Payload is optional and when passed through we obtain info on the type since <T> is declared at the interface header
@@ -41,14 +44,20 @@ type Reducer<T = any> = (state: State, payload?: T) => State;
 // Transducer in redux terms is root reducer. In functional programming it is a map to say which reducer is going to be used
 
 // Declaring variable that updates the excerpts
-export const changeQuotes: Reducer<number & string> = (state, timerId, input = '') => ({
+export const changeQuotes: Reducer<string> = (state, input = '', disabledTxtArea = false) => ({
   ...state,
   excerpts: state.excerpts,
   quoteBool: state.quoteBool,
   text: state.text,
   timerId: 0,
   input,
+  disabledTxtArea,
   characters: countCorrectCharacters(state.text, state.input),
+})
+
+export const disableTxtArea: Reducer<boolean | undefined> = (state, disabledTxtArea = true) => ({
+  ...state,
+  disabledTxtArea
 })
 
 // Declaring variable that updates the input
@@ -82,6 +91,8 @@ export const reducer: Transducer = (state, action) => {
       return changeQuotes(state, action.payload);
     case ActionTypes.TICK:
       return tick(state);
+    case ActionTypes.UPDATE_TXTAREA:
+      return disableTxtArea(state);
     default: 
     return state;
   }

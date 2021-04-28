@@ -4,25 +4,27 @@ import { useTyping } from '../state/context';
 
 export const UserInput: FunctionComponent = () => {
   const {
-    state: { input }, 
-    onInput, onReset, updateQuote
- } = useTyping();
+    state: { input, disabledTxtArea }, 
+    onInput, onReset, updateQuote, updateTxtAreaDisabled
+  } = useTyping();
 
- const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   return (
     <>
     <textarea 
       value={input}
+      disabled={disabledTxtArea}
       onChange={(e) => {
         onInput(e.target.value)
+        updateTxtAreaDisabled();
       }
     }
     ref={inputRef}
     />
     <button onClick={() => {
       onReset();
-      updateQuote();
+      updateQuote(inputRef);
       inputRef.current?.focus();
       }}>Click Me.</button>
     </>

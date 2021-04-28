@@ -41,7 +41,7 @@ export const useTyping = () => {
   };
   
   // Grab data from database if needed and switches to new quote
-  const updateQuote = () => {
+  const updateQuote = (prop: any) => {
     if (state.quoteBool === false) {
       const quotes = db.collection('excerpts').onSnapshot((snapshot) => {
         const tempQuotes = snapshot.docs.map((doc) => ({
@@ -108,7 +108,14 @@ export const useTyping = () => {
     dispatch({ type: ActionTypes.SET_TIMER });
   };
 
+  const updateTxtAreaDisabled = () => {
+    if(state.input.length >= state.text.length - 1 && state.timerId){
+      state.disabledTxtArea = true;
+      dispatch({type: ActionTypes.UPDATE_TXTAREA})
+    };
+  }
+
 
   // return [state, dispatch];
-  return { state, onInput, onReset, updateQuote };
+  return { state, onInput, onReset, updateQuote, updateTxtAreaDisabled };
 };
