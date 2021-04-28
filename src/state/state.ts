@@ -41,11 +41,14 @@ type Reducer<T = any> = (state: State, payload?: T) => State;
 // Transducer in redux terms is root reducer. In functional programming it is a map to say which reducer is going to be used
 
 // Declaring variable that updates the excerpts
-export const changeQuotes: Reducer<string[]> = (state) => ({
+export const changeQuotes: Reducer<number & string> = (state, timerId, input = '') => ({
   ...state,
   excerpts: state.excerpts,
   quoteBool: state.quoteBool,
   text: state.text,
+  timerId: 0,
+  input,
+  characters: countCorrectCharacters(state.text, state.input),
 })
 
 // Declaring variable that updates the input
@@ -56,7 +59,7 @@ export const changeInput: Reducer<string> = (state, input = '') => ({
 });
 
 // Declaring variable to update the timerId which is optional
-export const setTimer: Reducer<number> = (state, timerId) => ({
+export const setTimer: Reducer<number & boolean> = (state, timerId) => ({
   ...state,
   // The reason the payload is optional is so that the timerId can become undefined from a number
   timerId,

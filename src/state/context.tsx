@@ -31,8 +31,15 @@ export const TypingProvider: FunctionComponent = ({children}) => {
 // Using the typingContext state
 export const useTyping = () => {
   const [state, dispatch] = useContext(typingContext);
-
-
+  
+  // Reset button that resets values of type test
+    const onReset = () => {
+    state.seconds = 0;
+    state.input = '';
+    state.characters = 0;
+    clearInterval(state.timerId);
+  };
+  
   // Grab data from database if needed and switches to new quote
   const updateQuote = () => {
     if (state.quoteBool === false) {
@@ -50,13 +57,13 @@ export const useTyping = () => {
         const size: number = Object.keys(state.excerpts[0][0].quote).length;
         // Picks and updates text state
         const pickQuote = (size: number) => {
-        let i = Math.floor(Math.random() * size + 1);
-        state.text = state.excerpts[0][0].quote[`quote ${i}`];
-        console.log(state.text);
+          let i = Math.floor(Math.random() * size + 1);
+          state.text = state.excerpts[0][0].quote[`quote ${i}`];
+          console.log(state.text);
         };
         pickQuote(size);
-
-        dispatch({ type: ActionTypes.UPDATE_QUOTES});
+        onReset();
+        dispatch({ type: ActionTypes.UPDATE_QUOTES, payload: ''});
       });
       return state.excerpts;
     };
@@ -70,6 +77,7 @@ export const useTyping = () => {
     console.log(state.text);
     };
     pickQuote(size);
+
     dispatch({ type: ActionTypes.UPDATE_QUOTES});
   };
 
@@ -81,6 +89,7 @@ export const useTyping = () => {
     // When the input length is the same as the length of the text AND when the timerId exists, the timer is stopped.
     if (state.input.length >= state.text.length - 1 && state.timerId) {
       stopTimer();
+      
     }
 
     dispatch({ type: ActionTypes.CHANGE_INPUT, payload: value });
@@ -99,14 +108,6 @@ export const useTyping = () => {
     dispatch({ type: ActionTypes.SET_TIMER });
   };
 
-  // Reset button that resets values of type test
-    const onReset = () => {
-    state.seconds = 0;
-    state.input = '';
-    state.characters = 0;
-    clearInterval(state.timerId);
-    dispatch({ type: ActionTypes.SET_TIMER, payload: ''});
-  };
 
   // return [state, dispatch];
   return { state, onInput, onReset, updateQuote };

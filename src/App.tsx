@@ -6,8 +6,6 @@ import {useState} from 'react';
 import { Preview } from './components/Preview';
 import { UserInput } from './components/UserInput';
 import { SpeedInfo } from './components/SpeedInfo';
-import { ResetBtn } from './components/ResetBtn';
-import { TestBtn } from './components/TestBtn';
 import User from './components/User';
 import Login from './components/Login';
 
@@ -43,8 +41,7 @@ function App() {
             <div className='typing-speed'>
               <SpeedInfo user={user} highScr={highScr}/>
             </div>
-            <ResetBtn />
-            <TestBtn />
+            
           </TypingProvider>
         </div>
       </Route>

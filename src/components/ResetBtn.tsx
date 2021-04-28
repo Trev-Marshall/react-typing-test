@@ -1,12 +1,23 @@
 import { useTyping } from '../state/context';
 
-export const ResetBtn = () => {
+export const ResetBtn = (prop: any) => {
   const {
-    onReset
+    onReset, updateQuote
   } = useTyping();
+
   return (
     <>
-    <button onClick={onReset}>Reset</button>
+    <button onClick={
+      () => {
+      onReset();
+      console.log(prop.inputRef);
+      prop.inputRef.current?.focus();
+    }
+      }>Reset</button>
+    <button onClick={() => {
+      onReset();
+      updateQuote();
+      }}>Initialize quote</button>
     </>
   )
 }
