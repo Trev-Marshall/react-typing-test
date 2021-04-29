@@ -1,7 +1,8 @@
 import React from 'react'
 
-function HighScore(wpmBest: any) {
-  if(wpmBest.highScr === null){
+function HighScore(props: any) {
+  console.log(props);
+  if(props.highScr === null){
     return (
       <p>
         You don't have a highscore currently.
@@ -9,7 +10,7 @@ function HighScore(wpmBest: any) {
     );
   }else {
     return (
-      <p>{`High Score: ${wpmBest.highScr.wpmBest}`}</p>
+      <p>{`High Score: ${props.highScr.wpm.wordsPerMinute}`}</p>
     )
   }
 }

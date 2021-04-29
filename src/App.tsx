@@ -39,7 +39,7 @@ function App() {
             <Preview />
             <UserInput />
             <div className='typing-speed'>
-              <SpeedInfo user={user} highScr={highScr}/>
+              <SpeedInfo user={user} highScr={highScr} setScore={setScore}/>
             </div>
             
           </TypingProvider>
@@ -47,7 +47,7 @@ function App() {
       </Route>
 
       <Route path="/user">
-        <User user={user} highScr={highScr}/>
+        <User user={user} highScr={highScr} setScore={setScore}/>
       </Route>
 
       <Route path="/login">

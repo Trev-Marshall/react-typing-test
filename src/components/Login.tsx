@@ -2,7 +2,7 @@ import React from 'react'
 
 import { auth, db, provider } from '../firebase/firebase';
 
-function Login({setUser, setScore }: any) {
+function Login({ setUser, setScore }: any) {
 
   const initUserObj = (user: any) => {
     const wpmRef = db.collection("users").doc(user?.uid);
@@ -13,6 +13,7 @@ function Login({setUser, setScore }: any) {
         });
       } else {
         setScore(doc.data());
+        console.log(doc.data());
       }
     })
   }

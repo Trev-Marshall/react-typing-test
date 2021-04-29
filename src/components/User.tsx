@@ -1,9 +1,16 @@
 import React from 'react'
 import HighScore from './HighScore';
+import { db } from '../firebase/firebase';
 
 function User(props: any) {
-  const isLoggedIn = props.user;
+  
+  // const wpmRef = db.collection("users").doc(props.user?.uid);
+  //   wpmRef.get().then((doc) => {
+  //     props.setScore(doc.data());
+  //   });
 
+  const isLoggedIn = props.user;
+  console.log(props);
   if(isLoggedIn){
   return (
     <div>
