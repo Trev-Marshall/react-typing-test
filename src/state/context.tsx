@@ -41,7 +41,7 @@ export const useTyping = () => {
   };
   
   // Grab data from database if needed and switches to new quote
-  const updateQuote = (prop: any) => {
+  const updateQuote = () => {
     if (state.quoteBool === false) {
       const quotes = db.collection('excerpts').onSnapshot((snapshot) => {
         const tempQuotes = snapshot.docs.map((doc) => ({
@@ -77,7 +77,6 @@ export const useTyping = () => {
     console.log(state.text);
     };
     pickQuote(size);
-
     dispatch({ type: ActionTypes.UPDATE_QUOTES});
   };
 

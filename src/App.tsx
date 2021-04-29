@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import {useState} from 'react';
+import { useState } from 'react';
 
 // Components
 import { Preview } from './components/Preview';
