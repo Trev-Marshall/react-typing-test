@@ -22,7 +22,6 @@ export const SpeedInfo = (props: any) => {
     };
   }
 };
-
   addWMPToFirestore(props);
 
   return (

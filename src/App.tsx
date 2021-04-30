@@ -8,12 +8,10 @@ import { Preview } from './components/Preview';
 import { UserInput } from './components/UserInput';
 import { SpeedInfo } from './components/SpeedInfo';
 import User from './components/User';
-import Login from './components/Login';
 
 // Context
 import { TypingProvider } from './state/context';
 import { Person } from '@material-ui/icons';
-import InputRoundedIcon from '@material-ui/icons/InputRounded';
 
 function App() {
   const [user, setUser]: any = useState(JSON.parse(localStorage.getItem('user')!));
@@ -28,7 +26,7 @@ function App() {
     } else {
       setScore(null);
     }
-  }, []);
+  }, [user?.uid]);
 
   return (
     <Router>
@@ -39,7 +37,6 @@ function App() {
           </ul>
           <ul className="ul second-ul">
             <li><Link className="link profile" to="/user"><Person /></Link></li>
-            <li><Link className="link loginInOut" to="/login" ><InputRoundedIcon /></Link></li>
           </ul>
         </nav>
       </div>
@@ -59,11 +56,7 @@ function App() {
       </Route>
 
       <Route path={"/user"}>
-        <User user={user} highScr={highScr}/>
-      </Route>
-
-      <Route path="/login">
-        <Login setUser={setUser} setScore={setScore}/>
+        <User user={user} highScr={highScr} setUser={setUser} setScore={setScore}/>
       </Route>
 
       </Switch>

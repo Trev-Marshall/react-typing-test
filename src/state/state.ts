@@ -14,12 +14,12 @@ export interface State {
 // creating the initial state values. The type is "State" as stated in the variable header
 export const initialState: State = {
   excerpts: [],
-  text: 'Click the button below',
+  text: 'Click the button below to start',
   input: '',
   characters: 0,
   seconds: 0,
   timerId: undefined,
-  disabledTxtArea: undefined,
+  disabledTxtArea: true,
   quoteBool: false,
 }
 
