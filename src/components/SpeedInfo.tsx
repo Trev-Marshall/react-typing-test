@@ -11,13 +11,16 @@ export const SpeedInfo = (props: any) => {
   let wordsPerMinute: number = wpm(words(characters), minutes(seconds));
 
   const addWMPToFirestore = (props: any) => {
-  if (input.length === text.length - 1 && props.user) {
-    if(props.highScr === null || wordsPerMinute > props.highScr.wordsPerMinute)
+  if (input.length === text.length && props.user) {
+    console.log(props.highScr);
+    if(props.highScr.wpm === null || wordsPerMinute > props.highScr.wpm?.wordsPerMinute){
     db.collection('users').doc(props.user.uid).set(
       {wpm: {wordsPerMinute}},
       );
-      console.log("done");
-    }
+      console.log(wordsPerMinute);
+      console.log("New highscore!");
+    };
+  }
 };
 
   addWMPToFirestore(props);

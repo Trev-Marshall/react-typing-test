@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
+import { db } from './firebase/firebase';
 
 // Components
 import { Preview } from './components/Preview';
@@ -18,6 +19,17 @@ function App() {
   const [user, setUser]: any = useState(JSON.parse(localStorage.getItem('user')!));
   const [highScr, setScore]: any = useState(null);
 
+  useEffect(() => {
+    const wpmRef = db.collection("users").doc(user?.uid);
+    if(user?.uid){
+      wpmRef.get().then((doc) => {
+        setScore(doc.data());
+      });
+    } else {
+      setScore(null);
+    }
+  }, []);
+
   return (
     <Router>
       <div>
@@ -27,7 +39,7 @@ function App() {
           </ul>
           <ul className="ul second-ul">
             <li><Link className="link profile" to="/user"><Person /></Link></li>
-            <li><Link className="link loginInOut" to="/login"><InputRoundedIcon /></Link></li>
+            <li><Link className="link loginInOut" to="/login" ><InputRoundedIcon /></Link></li>
           </ul>
         </nav>
       </div>
@@ -46,8 +58,8 @@ function App() {
         </div>
       </Route>
 
-      <Route path="/user">
-        <User user={user} highScr={highScr} setScore={setScore}/>
+      <Route path={"/user"}>
+        <User user={user} highScr={highScr}/>
       </Route>
 
       <Route path="/login">

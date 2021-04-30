@@ -1,16 +1,8 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import HighScore from './HighScore';
-import { db } from '../firebase/firebase';
 
-function User({user, highScr, setScore}: any) {
-  
-  const seeHighScore = () => {
-    const wpmRef = db.collection("users").doc(user?.uid);
-    wpmRef.get().then((doc) => {
-      setScore(doc.data());
-    });
-  }
-  
+
+function User({user, highScr}: any) {
   
   const isLoggedIn = user;
 
@@ -26,7 +18,6 @@ function User({user, highScr, setScore}: any) {
       <div>
       This is where the user's stats will be
       </div>
-      <button onClick={seeHighScore}>Click here to update your highscore</button>
       <HighScore highScr={highScr}/>
     </div>
   );} else {

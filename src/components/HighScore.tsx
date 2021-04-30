@@ -1,7 +1,6 @@
 import React from 'react'
 
 function HighScore(props: any) {
-  console.log(props);
   if(props.highScr === null){
     return (
       <p>

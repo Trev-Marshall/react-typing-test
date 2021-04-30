@@ -9,7 +9,7 @@ function Login({ setUser, setScore }: any) {
     wpmRef.get().then((doc) => {
       if(!doc.exists){
         db.collection('users').doc(user.uid).set({
-          wpmBest: null,
+          wpm: null,
         });
       } else {
         setScore(doc.data());
