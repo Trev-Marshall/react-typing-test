@@ -1,7 +1,7 @@
 import React from 'react';
 import { db } from '../firebase/firebase';
 import { useTyping } from '../state/context';
-import {wpm, words, minutes} from '../state/util';
+import {wpm, words, minutes, countCorrectCharacters} from '../state/util';
 
 export const SpeedInfo = (props: any) => {
   const {
@@ -9,7 +9,9 @@ export const SpeedInfo = (props: any) => {
   } = useTyping();
 
   let wordsPerMinute: number = wpm(words(characters), minutes(seconds));
+  let correctCharacters: number = countCorrectCharacters(text, input);
 
+  console.log(correctCharacters);
   const addWMPToFirestore = (props: any) => {
   if (input.length === text.length && props.user) {
     console.log(props.highScr);
@@ -36,7 +38,7 @@ export const SpeedInfo = (props: any) => {
       </div>
       <div>
         <div>Correct Characters:</div>
-        <div className="large-text">{characters}/{text.length - 2}</div>
+        <div className="large-text">{correctCharacters}</div>
       </div>
     </div>
   )

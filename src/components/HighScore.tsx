@@ -11,7 +11,7 @@ useEffect(() => {
   })
 }, [user?.uid]);
 
-  if(highScr === null){
+  if(highScr === null || highScr === undefined || highScr?.wpm === null){
     return (
       <h3>
         You don't have a highscore currently.
@@ -19,7 +19,7 @@ useEffect(() => {
     );
   }else {
     return (
-      <h3>{`High Score: ${highScr.wpm.wordsPerMinute}`}</h3>
+      <h3>{`High Score: ${highScr?.wpm.wordsPerMinute}`}</h3>
     )
   }
 }
