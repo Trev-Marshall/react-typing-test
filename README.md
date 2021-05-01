@@ -1,18 +1,18 @@
 # Mélange
 
-Smooth and functional React application that records and determines words-per-minute. \
+Smooth and functional React application that records and determines words-per-minute.
 
 All code is split into respective folders inside the 'src' folder. If you have any questions send me a message over on my [LinkedIn](https://www.linkedin.com/in/trevor-marshall-0b17121b2/)
 
 ## Database used
 
-Firebase was used and if you are going to use this app you are going to have to come up with your own api key and project in firebase to run the app without it crashing. \
+Firebase was used and if you are going to use this app you are going to have to come up with your own api key and project in firebase to run the app without it crashing.
 
 ## Firebase Setup
 
-Directions to start an application in Firebase can be found [here](https://firebase.google.com/docs/web/setup). \
+Directions to start an application in Firebase can be found [here](https://firebase.google.com/docs/web/setup).
 
-Make sure to have an account set up with firebase before trying to make a project with firebase.\
+Make sure to have an account set up with firebase before trying to make a project with firebase.
 
 Make sure to add the code below to the bottom of the firebase config file to export and allow usage of the data from the firebase to the rest of the app
 
