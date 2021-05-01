@@ -13,7 +13,6 @@ function Login({ setUser, setScore }: any) {
         });
       } else {
         setScore(doc.data());
-        console.log(doc.data());
       }
     })
   }

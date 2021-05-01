@@ -15,7 +15,6 @@ function User({ user, highScr, setUser, setScore }: any) {
         });
       } else {
         setScore(doc.data());
-        console.log(doc.data());
       }
     })
   }

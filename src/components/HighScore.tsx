@@ -6,7 +6,6 @@ function HighScore({ highScr, setScore, user }: any) {
 useEffect(() => {
   const wpmRef = db.collection('users').doc(user?.uid);
   wpmRef.get().then((doc) => {
-    console.log(doc.data());
     setScore(doc.data());
   })
 }, [user?.uid]);
