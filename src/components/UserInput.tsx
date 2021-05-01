@@ -11,8 +11,9 @@ export const UserInput: FunctionComponent = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   return (
-    <>
+    <div className="user-input-container">
     <textarea 
+      className="text-area"
       value={input}
       readOnly={disabledTxtArea}
       onChange={(e) => {
@@ -23,11 +24,12 @@ export const UserInput: FunctionComponent = () => {
     ref={inputRef}
     />
     <button
+      className="button"
       onClick={() => {
         onReset();
         updateQuote();
         inputRef.current?.focus();
         }
-      }>Click Me.</button>
-    </>
+      }>Click Me..</button>
+    </div>
   )};

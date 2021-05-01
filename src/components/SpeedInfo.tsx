@@ -25,10 +25,19 @@ export const SpeedInfo = (props: any) => {
   addWMPToFirestore(props);
 
   return (
-    <>
-    <div>Elapsed Time: {seconds}s</div>
-    <div>WPM: {wordsPerMinute}</div>
-    <div>Correct Characters: {characters}/{text.length - 2}</div>
-    </>
+    <div className="speed-info-container text-color">
+      <div>
+        <div>Elapsed Time:</div>
+        <div className="large-text">{seconds}s</div>
+      </div>
+      <div>
+        <div>WPM:</div>
+        <div className="large-text">{wordsPerMinute}</div>
+      </div>
+      <div>
+        <div>Correct Characters:</div>
+        <div className="large-text">{characters}/{text.length - 2}</div>
+      </div>
+    </div>
   )
 };

@@ -33,10 +33,10 @@ function App() {
       <div>
         <nav className="navContainer">
           <ul className="ul">
-            <li><Link className="link" to="/"><h1 className="heading">Melange</h1></Link></li>
+            <li><Link className="link" to="/"><h1 className="heading">Mélange</h1></Link></li>
           </ul>
           <ul className="ul second-ul">
-            <li><Link className="link profile" to="/user"><Person /></Link></li>
+            <li><Link className="link profile" to="/user"><Person fontSize="large" /></Link></li>
           </ul>
         </nav>
       </div>

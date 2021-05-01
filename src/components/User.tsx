@@ -50,23 +50,24 @@ function User({ user, highScr, setUser, setScore }: any) {
 
   if(isLoggedIn){
   return (
-    <div>
-      <div>
+    <div className="user-container">
+      <h2>
       {user.name}
-      <img src={user.photo} alt={`${user.name}'s Profile Pic`}/>
-      || Profile pic goes here
-      </div>
-      <div>
-      This is where the user's stats will be
-      </div>
+      </h2>
       <HighScore highScr={highScr} setScore={setScore} user={user}/>
       <div className="loginDiv">
-      <button onClick={signIn} className="loginBtn">Switch Accounts</button>
-      <button onClick={signOut} className="loginBtn">Sign Out</button>
+      <button onClick={signIn} className="loginBtn button">Switch Accounts</button>
+      <button onClick={signOut} className="loginBtn button">Sign Out</button>
     </div>
     </div>
   );} else {
-    return (<><h2>Once you are signed in your stats will be shown here.</h2><div className='loginDiv'><button onClick={signIn} className="loginBtn">Sign In</button></div></>)
+    return (
+    <div className="sign-in-container" >
+      <h2>Once you are signed in your stats will be shown here.</h2>
+      <div className='loginDiv' >
+        <button onClick={signIn} className="loginBtn button" >Sign In</button>
+      </div>
+    </div>)
   }
 }
 

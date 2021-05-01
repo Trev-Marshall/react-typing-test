@@ -15,5 +15,5 @@ export const Preview: FunctionComponent = () => {
       </span>
   });
 
-  return <div>{previewText}</div>;
+  return <div className="text-color preview-div">{previewText}</div>;
 }

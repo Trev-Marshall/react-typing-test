@@ -13,13 +13,13 @@ useEffect(() => {
 
   if(highScr === null){
     return (
-      <p>
+      <h3>
         You don't have a highscore currently.
-      </p>
+      </h3>
     );
   }else {
     return (
-      <p>{`High Score: ${highScr.wpm.wordsPerMinute}`}</p>
+      <h3>{`High Score: ${highScr.wpm.wordsPerMinute}`}</h3>
     )
   }
 }
