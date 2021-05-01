@@ -118,3 +118,15 @@ body {
 	margin: auto;
 	color: white;
 }
+
+@media (max-width: 1080px) {
+	.speed-info-container {
+		flex-direction: column;
+	}
+	.little-bit-of-padding {
+		padding: 5px;
+	}
+	.preview-div {
+		height: auto;
+	}
+}

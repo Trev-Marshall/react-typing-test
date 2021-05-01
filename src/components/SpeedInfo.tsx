@@ -15,7 +15,7 @@ export const SpeedInfo = (props: any) => {
   const addWMPToFirestore = (props: any) => {
   if (input.length === text.length && props.user) {
     console.log(props.highScr);
-    if(props.highScr.wpm === null || wordsPerMinute > props.highScr.wpm?.wordsPerMinute){
+    if(props.highScr === undefined || props.highScr.wpm === null || wordsPerMinute > props.highScr.wpm?.wordsPerMinute){
     db.collection('users').doc(props.user.uid).set(
       {wpm: {wordsPerMinute}},
       );
@@ -30,15 +30,15 @@ export const SpeedInfo = (props: any) => {
     <div className="speed-info-container text-color">
       <div>
         <div>Elapsed Time:</div>
-        <div className="large-text">{seconds}s</div>
+        <div className="large-text little-bit-of-padding">{seconds}s</div>
       </div>
       <div>
         <div>WPM:</div>
-        <div className="large-text">{wordsPerMinute}</div>
+        <div className="large-text little-bit-of-padding">{wordsPerMinute}</div>
       </div>
       <div>
         <div>Correct Characters:</div>
-        <div className="large-text">{correctCharacters}</div>
+        <div className="large-text little-bit-of-padding">{correctCharacters}</div>
       </div>
     </div>
   )
